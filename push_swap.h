@@ -6,7 +6,7 @@
 /*   By: mschyns <mano.schyns@learner.42.tech>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 16:07:25 by mschyns           #+#    #+#             */
-/*   Updated: 2026/04/27 17:05:42 by mschyns          ###   ########.fr       */
+/*   Updated: 2026/04/28 08:07:50 by mschyns          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ void	rr(t_list **lst_a, t_list **lst_b);
 void	rra(t_list **lst, int flag);
 void	rrb(t_list **lst, int flag);
 void	rrr(t_list **lst_a, t_list **lst_b);
+double	compute_disorder(t_list	*lst);
+int	get_size(t_list *lst);
 
 #endif
