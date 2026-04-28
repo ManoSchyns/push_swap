@@ -64,12 +64,15 @@ int full_b(t_list **lst_a, t_list **lst_b)
 
 void bucket_sort(t_list **lst_a, t_list **lst_b)
 {
-    int len;
+    // j'ai mis en commentaire pour tester, tu peux enlever
+    (void)lst_a;
+    (void)lst_b;
+/*     int len;
     int count;
 
     len = get_size(*lst_a);
     count = define_index(*lst_a, len);
-    
+     */
 }
 
 /*int main()

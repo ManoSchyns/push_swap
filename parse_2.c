@@ -58,3 +58,16 @@ void free_stack(t_list **stack)
     }
     *stack = NULL;
 }
+
+void adaptive_sort(t_list **stack_a, t_list **stack_b)
+{
+    double disorder;
+
+    disorder = compute_disorder(*stack_a);
+    if (disorder < 0.2)
+        n2(stack_a, stack_b);
+    else if (disorder < 0.5)
+        bucket_sort(stack_a, stack_b);
+    else
+        radix_sort(stack_a, stack_b);
+}

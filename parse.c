@@ -13,8 +13,8 @@
 #include "push_swap.h"
 
 /*
-Verif que la string représente un entier valide
-return 1 si valide, 0 sinon
+	Verif que la string représente un entier valide
+	return 1 si valide, 0 sinon
 */
 int is_valid_number(char *str)
 {
@@ -110,8 +110,8 @@ int add_to_stack(t_list **stack, int value)
 }
 
 /*
-boucle principale du parsing, pour chaque argv[i], valide et ajoute a la stack
-return 1 si tout est ok, 0 si erreur
+	boucle principale du parsing, pour chaque argv[i], valide et ajoute a la stack
+	return 1 si tout est ok, 0 si erreur
 */
 int parse_args(int argc, char **argv, t_list **stack_a, t_options *options)
 {
@@ -181,7 +181,17 @@ int main(int argc, char **argv)
         free_stack(&stack_a);
         return (1);
     }    
-    bucket_sort(&stack_a, &stack_b);
+    // bucket_sort(&stack_a, &stack_b);
+    // radix_sort(&stack_a, &stack_b);
+	// n2(&stack_a, &stack_b);
+	if (options.strategy == STRAT_SIMPLE)
+		n2(&stack_a, &stack_b);
+	else if (options.strategy == STRAT_COMPLEX)
+		radix_sort(&stack_a, &stack_b);
+	else if (options.strategy == STRAT_MEDIUM)
+		bucket_sort(&stack_a, &stack_b);
+	else
+		adaptive_sort(&stack_a, &stack_b);
     t_list *tmp = stack_a;
     while (tmp)
     {
