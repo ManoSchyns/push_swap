@@ -24,6 +24,20 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+typedef enum e_strategy
+{
+    STRAT_ADAPTIVE,
+    STRAT_SIMPLE,
+    STRAT_MEDIUM,
+    STRAT_COMPLEX
+}   t_strategy;
+
+typedef struct s_options
+{
+    t_strategy  strategy;
+    int         bench;
+}   t_options;
+
 // -- ops --
 void	sa(t_list *lst_a, int flag);
 void	sb(t_list *lst_b, int flag);
@@ -41,7 +55,7 @@ void	rrr(t_list **lst_a, t_list **lst_b);
 int		is_valid_number(char *str);
 int		string_to_int(char *str, int *out);
 int		add_to_stack(t_list **stack, int value);
-int		parse_args(int argc, char **argv, t_list **stack_a);
+int		parse_args(int argc, char **argv, t_list **stack_a, t_options *options);
 
 // -- utils -- 
 int		ft_isdigit(int c);
@@ -50,5 +64,6 @@ int     process_token(char *token, t_list **stack_a);
 void    free_split(char **tab);
 void    free_stack(t_list **stack);
 int		is_in_stack(t_list *stack, int value);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 #endif

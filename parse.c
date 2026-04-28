@@ -113,7 +113,7 @@ int add_to_stack(t_list **stack, int value)
 boucle principale du parsing, pour chaque argv[i], valide et ajoute a la stack
 return 1 si tout est ok, 0 si erreur
 */
-int parse_args(int argc, char **argv, t_list **stack_a)
+int parse_args(int argc, char **argv, t_list **stack_a, t_options *options)
 {
 	int i;
 	int j;
@@ -122,6 +122,26 @@ int parse_args(int argc, char **argv, t_list **stack_a)
 	i = 1;
 	while (i < argc)
 	{
+		if (argv[i][0] == '-' && argv[i][1] == '-')
+		{
+			if(ft_strncmp(argv[i], "--simple", 8) == 0)
+				options->strategy = STRAT_SIMPLE;
+			else if(ft_strncmp(argv[i], "--medium", 8) == 0)
+				options->strategy = STRAT_MEDIUM;
+			else if(ft_strncmp(argv[i], "--complex", 9) == 0)
+				options->strategy = STRAT_COMPLEX;
+			else if(ft_strncmp(argv[i], "--adaptive", 10) == 0)
+				options->strategy = STRAT_ADAPTIVE;
+			else if(ft_strncmp(argv[i], "--bench", 7) == 0)
+				options->bench = 1;
+			else
+			{
+				write(2, "FlagsError\n", 11); // A MODIFIER AVANT DE RENDRE
+				return (0);
+			}
+			i++;
+			continue;
+		}
 		tokens = ft_split(argv[i], ' ');
 		if (!tokens)
 			return (0);
@@ -147,11 +167,14 @@ int main(int argc, char **argv)
 {
     t_list  *stack_a;
     t_list  *tmp;
+	t_options options;
 
     stack_a = NULL;
+	options.strategy = STRAT_ADAPTIVE;
+	options.bench = 0;
     if (argc < 2)
         return (0);
-    if (!parse_args(argc, argv, &stack_a))
+    if (!parse_args(argc, argv, &stack_a, &options))
     {
         write(2, "Error\n", 6);
 		free_stack(&stack_a);
