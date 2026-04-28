@@ -6,7 +6,7 @@
 /*   By: mschyns <mano.schyns@learner.42.tech>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 16:07:25 by mschyns           #+#    #+#             */
-/*   Updated: 2026/04/27 17:05:42 by mschyns          ###   ########.fr       */
+/*   Updated: 2026/04/28 08:07:50 by mschyns          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ void    free_split(char **tab);
 void    free_stack(t_list **stack);
 int		is_in_stack(t_list *stack, int value);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-int		get_size(t_list *lst);
+int     get_size(t_list *lst);
+double	compute_disorder(t_list	*lst);
+
+int	n2(t_list **lst_a, t_list **lst_b);
 
 #endif
