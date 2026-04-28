@@ -165,27 +165,30 @@ int parse_args(int argc, char **argv, t_list **stack_a, t_options *options)
 
 int main(int argc, char **argv)
 {
-    t_list  *stack_a;
-    t_list  *tmp;
-	t_options options;
+    t_list      *stack_a;
+    t_list      *stack_b;
+    t_options   options;
 
     stack_a = NULL;
-	options.strategy = STRAT_ADAPTIVE;
-	options.bench = 0;
+    stack_b = NULL;
+    options.strategy = STRAT_ADAPTIVE;
+    options.bench = 0;
     if (argc < 2)
         return (0);
     if (!parse_args(argc, argv, &stack_a, &options))
     {
         write(2, "Error\n", 6);
-		free_stack(&stack_a);
+        free_stack(&stack_a);
         return (1);
-    }
-    tmp = stack_a;
+    }    
+    radix_sort(&stack_a, &stack_b, &options);
+    t_list *tmp = stack_a;
     while (tmp)
     {
         printf("%d\n", tmp->data);
         tmp = tmp->next;
     }
     free_stack(&stack_a);
+    free_stack(&stack_b);
     return (0);
 }
