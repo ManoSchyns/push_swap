@@ -71,5 +71,6 @@ int     get_size(t_list *lst);
 double	compute_disorder(t_list	*lst);
 
 int	n2(t_list **lst_a, t_list **lst_b);
+void bucket_sort(t_list **lst_a, t_list **lst_b);
 
 #endif

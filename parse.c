@@ -181,11 +181,11 @@ int main(int argc, char **argv)
         free_stack(&stack_a);
         return (1);
     }    
-    radix_sort(&stack_a, &stack_b, &options);
+    bucket_sort(&stack_a, &stack_b);
     t_list *tmp = stack_a;
     while (tmp)
     {
-        printf("%d\n", tmp->data);
+        printf("\n%d a l index : %d\n", tmp->data, tmp->index);
         tmp = tmp->next;
     }
     free_stack(&stack_a);
