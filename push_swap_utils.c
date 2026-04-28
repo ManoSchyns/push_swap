@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mschyns <mano.schyns@learner.42.tech>      +#+  +:+       +#+        */
+/*   By: dle-gall <diego.le-gall@learner.42.tech    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 07:02:13 by mschyns           #+#    #+#             */
-/*   Updated: 2026/04/28 07:15:38 by mschyns          ###   ########.fr       */
+/*   Updated: 2026/04/28 08:46:02 by dle-gall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,55 @@ double	compute_disorder(t_list	*lst)
 	if (total_pairs == 0)
 		return (0.0);
 	return (mistakes / total_pairs);
+}
+
+int find_min(t_list *stack)
+{
+	int min;
+
+	if (stack == NULL)
+		return (INT_MAX);
+	min = stack->data;
+	stack = stack->next;
+	while (stack != NULL)
+	{
+		if (stack->data < min)
+			min = stack->data;
+		stack = stack->next;
+	}
+	return (min);
+}
+
+int find_max(t_list *stack)
+{
+	int max;
+
+	if (stack == NULL)
+		return (INT_MIN);
+	max = stack->data;
+	stack = stack->next;
+	while (stack != NULL)
+	{
+		if (stack->data > max)
+			max = stack->data;
+		stack = stack->next;
+	}
+	return (max);
+}
+
+int find_position(t_list *stack, int value)
+{
+	int pos;
+
+	pos = 0;
+	if (stack == NULL)
+		return (-1);
+	while (stack != NULL)
+	{
+		if (stack->data == value)
+			return (pos);
+		pos++;
+		stack = stack->next;
+	}
+	return (-1);
 }
