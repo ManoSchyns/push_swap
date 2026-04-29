@@ -12,6 +12,9 @@
 
 #include "push_swap.h"
 
+/*
+	Return : le dernier element de la liste
+*/
 static t_list	*get_last(t_list *lst)
 {
 	t_list	*prev;
@@ -28,6 +31,11 @@ static t_list	*get_last(t_list *lst)
 	return (work);
 }
 
+/*
+	Décale tous les éléments de la pile a d'une position vers le bas.
+	Le dernier élément devient le premier
+	-> affiche rra\n si flag = 1
+*/
 void	rra(t_list **lst, int flag)
 {
 	t_list	*to_add;
@@ -41,6 +49,11 @@ void	rra(t_list **lst, int flag)
 		write (1, "rra\n", 4);
 }
 
+/*
+	Décale tous les éléments de la pile b d'une position vers le bas.
+	Le dernier élément devient le premier.
+	-> affiche rrb\n si flag = 1
+*/
 void	rrb(t_list **lst, int flag)
 {
 	t_list	*to_add;
@@ -54,6 +67,10 @@ void	rrb(t_list **lst, int flag)
 		write (1, "rrb\n", 4);
 }
 
+/*
+	rra et rrb en même temps
+	-> affiche rrr\n
+*/
 void	rrr(t_list **lst_a, t_list **lst_b)
 {
 	rra(lst_a, 0);

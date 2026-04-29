@@ -13,10 +13,10 @@
 #include "push_swap.h"
 
 /*
-Shift up all elements of stack a by one.
-The first element becomes the last one.
-if flag == 1 
--> print ra\n
+	Décale tous les éléments de la pile a d'une position vers le haut.
+	Le premier élément devient le dernier.
+	Si flag == 1
+	-> affiche ra\n
 */
 void	ra(t_list	**lst, int flag)
 {
@@ -37,10 +37,10 @@ void	ra(t_list	**lst, int flag)
 }
 
 /*
-Shift up all elements of stack b by one.
-The first element becomes the last one.
-if flag == 1 
--> print rb\n
+	Décale tous les éléments de la pile b d'une position vers le haut.
+	Le premier élément devient le dernier.
+	Si flag == 1
+	-> affiche rb\n
 */
 void	rb(t_list	**lst, int flag)
 {
@@ -61,8 +61,8 @@ void	rb(t_list	**lst, int flag)
 }
 
 /*
-ra and rb at the same time.
--> print rr\n
+	ra and rb en même temps.
+	-> affiche rr\n
 */
 void	rr(t_list **lst_a, t_list **lst_b)
 {

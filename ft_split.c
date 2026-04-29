@@ -12,6 +12,9 @@
 
 #include "push_swap.h"
 
+/*
+	Return le nombre de mot selon le séparateur c
+*/
 static int	count_words(char const *str, char c)
 {
 	int	i;
@@ -32,6 +35,11 @@ static int	count_words(char const *str, char c)
 	return (j);
 }
 
+/*
+	Return 1 mot dans la string qui 
+	se trouve entre start et end
+	Valeur de retour a free
+*/
 static char	*get_word(char const *str, int start, int end)
 {
 	char	*word;
@@ -53,6 +61,12 @@ static char	*get_word(char const *str, int start, int end)
 	return (word);
 }
 
+/*
+	Rempli le tab de string.
+	-> Recupere mot par mot et les mets dans le tab
+	return 1 si tout bon
+	0 en cas d'erreur
+*/
 static int	fill_tab(char **tab, char const *s, char c)
 {
 	int	i;
@@ -78,6 +92,11 @@ static int	fill_tab(char **tab, char const *s, char c)
 	return (1);
 }
 
+/*
+	Return un tableau de mot provenant 
+	de la chaine de caractère entrée en parametre
+	Selon le separateur c
+*/
 char	**ft_split(char const *s, char c)
 {
 	char	**tab;

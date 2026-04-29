@@ -3,18 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dle-gall <diego.le-gall@learner.42.tech    +#+  +:+       +#+        */
+/*   By: mschyns <mano.schyns@learner.42.tech>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 07:02:13 by mschyns           #+#    #+#             */
-/*   Updated: 2026/04/28 08:46:02 by dle-gall         ###   ########.fr       */
+/*   Updated: 2026/04/29 11:17:52 by mschyns          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+	Compare 2 chaine de caracteres. 
+	Return un positif si s1 > s2
+	Return un negatif si s2 > s1
+	return 0 si egales
+*/
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t			i;
+	unsigned char	*src1;
+	unsigned char	*src2;
+
+	src1 = (unsigned char *)s1;
+	src2 = (unsigned char *)s2;
+	i = 0;
+	while (i < n)
+	{
+		if (src1[i] != src2[i])
+			return (src1[i] - src2[i]);
+		i++;
+	}
+	return (0);
+}
 
 /*
-Return the number of elements in the list
+	Retourne 1 si le caractere est un chiffre.
+	0 si non
+*/
+int	ft_isdigit(int c)
+{
+	return (c >= '0' && c <= '9');
+}
+
+/*
+	Return the number of elements in the list
 */
 int	get_size(t_list *lst)
 {
@@ -30,86 +62,29 @@ int	get_size(t_list *lst)
 }
 
 /*
-Return : 0 if the list is sorted.
-Return : 1 if the list is in the worst order possible
-Return : a number between 0 and 1 wich tell how good is the liste sorted
-If the number is close to 0 -> we are almost sorted.
-If the number is close to 1 -> we are quite far.
+	Retourne l'indice de la valeur maximale de la liste
 */
-double	compute_disorder(t_list	*lst)
+int	get_max(t_list *lst)
 {
-	double	mistakes;
-	double	total_pairs;
-	t_list	*work;
-	t_list	*next;
+	int	i;
+	int	max_i;
+	int	max_data;
 
-	mistakes = 0.0;
-	total_pairs = 0.0;
-	work = lst;
-	while (work != NULL)
-	{
-		next = work->next;
-		while (next != NULL)
-		{
-			total_pairs += 1;
-			if (work->data > next->data)
-				mistakes += 1;
-			next = next->next;
-		}
-		work = work->next;
-	}
-	if (total_pairs == 0)
-		return (0.0);
-	return (mistakes / total_pairs);
-}
-
-int find_min(t_list *stack)
-{
-	int min;
-
-	if (stack == NULL)
-		return (INT_MAX);
-	min = stack->data;
-	stack = stack->next;
-	while (stack != NULL)
-	{
-		if (stack->data < min)
-			min = stack->data;
-		stack = stack->next;
-	}
-	return (min);
-}
-
-int find_max(t_list *stack)
-{
-	int max;
-
-	if (stack == NULL)
-		return (INT_MIN);
-	max = stack->data;
-	stack = stack->next;
-	while (stack != NULL)
-	{
-		if (stack->data > max)
-			max = stack->data;
-		stack = stack->next;
-	}
-	return (max);
-}
-
-int find_position(t_list *stack, int value)
-{
-	int pos;
-
-	pos = 0;
-	if (stack == NULL)
+	if (lst == NULL)
 		return (-1);
-	while (stack != NULL)
+	i = 1;
+	max_data = lst->data;
+	max_i = 0;
+	lst = lst->next;
+	while (lst != NULL)
 	{
-		if (stack->data == value)
-			return (pos);
-		pos++;
-		stack = stack->next;
+		if (lst->data > max_data)
+		{
+			max_i = i;
+			max_data = lst->data;
+		}
+		lst = lst->next;
+		i ++;
 	}
-	return (-1);
+	return (max_i);
 }

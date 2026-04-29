@@ -6,7 +6,7 @@
 /*   By: mschyns <mano.schyns@learner.42.tech>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 08:46:39 by dle-gall          #+#    #+#             */
-/*   Updated: 2026/04/28 15:22:01 by mschyns          ###   ########.fr       */
+/*   Updated: 2026/04/29 09:24:22 by mschyns          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ void radix_sort(t_list **stack_a, t_list **stack_b)
         }
         bit++; // on passe au bit suivant
     }
-    printf("\n==count: %d\n", count);
+    //printf("\n==count: %d\n", count);
 }
 
 /*

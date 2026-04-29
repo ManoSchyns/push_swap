@@ -13,9 +13,9 @@
 #include "push_swap.h"
 
 /*
-Swap the first two elements at the top of stack a.
-Do nothing if there is only one or no elements
-If flag == 1 -> print sa\n
+	Échange les deux premiers éléments en haut de la pile a.
+	Ne fait rien s'il n'y a qu'un seul élément ou aucun.
+	Si flag == 1 -> affiche sa\n
 */
 void	sa(t_list *lst_a, int flag)
 {
@@ -33,9 +33,9 @@ void	sa(t_list *lst_a, int flag)
 }
 
 /*
-Swap the first two elements at the top of stack b.
-Do nothing if there is only one or no elements
-If flag == 1 -> print sb\n
+	Échange les deux premiers éléments en haut de la pile b.
+	Ne fait rien s'il n'y a qu'un seul élément ou s'il n'y en a aucun.
+	Si flag == 1 -> affiche sb\n
 */
 void	sb(t_list *lst_b, int flag)
 {
@@ -53,8 +53,8 @@ void	sb(t_list *lst_b, int flag)
 }
 
 /*
-Swap the first two elements at the top of stack a and b.
--> Print ss\n
+	Échange les deux premiers éléments en haut de la pile a et b.
+	-> Affiche ss\n
 */
 void	ss(t_list *lst_a, t_list *lst_b)
 {
@@ -64,9 +64,9 @@ void	ss(t_list *lst_a, t_list *lst_b)
 }
 
 /*
-Take the first element at the top of b and put it at the top of a.
-Do nothing if b is empty.
--> Print pa\n
+	Prend le premier élément en haut de b et le place en haut de a.
+	Ne fait rien si b est vide.
+	-> Affiche pa\n
 */
 void	pa(t_list **lst_a, t_list **lst_b)
 {
@@ -82,9 +82,9 @@ void	pa(t_list **lst_a, t_list **lst_b)
 }
 
 /*
-Take the first element at the top of a and put it at the top of b.
-Do nothing if a is empty.
--> print pb\n
+	Prend le premier élément en haut de a et le place en haut de b.
+	Ne fait rien si a est vide.
+	-> print pb\n
 */
 void	pb(t_list **lst_a, t_list **lst_b)
 {

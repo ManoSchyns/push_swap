@@ -21,23 +21,29 @@
 typedef struct s_list
 {
 	int				data;
-    int             index;
+	int				index;
 	struct s_list	*next;
 }	t_list;
 
 typedef enum e_strategy
 {
-    STRAT_ADAPTIVE,
-    STRAT_SIMPLE,
-    STRAT_MEDIUM,
-    STRAT_COMPLEX
-}   t_strategy;
+	STRAT_ADAPTIVE,
+	STRAT_SIMPLE,
+	STRAT_MEDIUM,
+	STRAT_COMPLEX
+}	t_strategy;
 
 typedef struct s_options
 {
-    t_strategy  strategy;
-    int         bench;
-}   t_options;
+	t_strategy	strategy;
+	int			bench;
+}	t_options;
+
+typedef struct s_bucket
+{
+	int	start;
+	int	end;
+}	t_bucket;
 
 // -- ops --
 void	sa(t_list *lst_a, int flag);
@@ -57,23 +63,25 @@ int		is_valid_number(char *str);
 int		string_to_int(char *str, int *out);
 int		add_to_stack(t_list **stack, int value);
 int		parse_args(int argc, char **argv, t_list **stack_a, t_options *options);
-void    radix_sort(t_list **stack_a, t_list **stack_b);
 
 // -- utils -- 
 int		ft_isdigit(int c);
-char	**ft_split(char const *s, char c);
-int     process_token(char *token, t_list **stack_a);
-void    free_split(char **tab);
-void    free_stack(t_list **stack);
 int		is_in_stack(t_list *stack, int value);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-int     get_size(t_list *lst);
+int		get_size(t_list *lst);
+int		process_token(char *token, t_list **stack_a);
+int		*index_array(t_list *stack);
+int		get_max(t_list *lst);
+char	**ft_split(char const *s, char c);
+void	free_split(char **tab);
+void	free_stack(t_list **stack);
+void	assign_index(t_list *stack, int *indices);
 double	compute_disorder(t_list	*lst);
-void    adaptive_sort(t_list **stack_a, t_list **stack_b);
 
-int	n2(t_list **lst_a, t_list **lst_b);
-int bucket_sort(t_list **lst_a, t_list **lst_b);
-int *index_array(t_list *stack);
-void assign_index(t_list *stack, int *indices);
+// -- sorting algorithms --
+int		n2(t_list **lst_a, t_list **lst_b);
+int		bucket_sort(t_list **lst_a, t_list **lst_b);
+void	radix_sort(t_list **stack_a, t_list **stack_b);
+void	adaptive_sort(t_list **stack_a, t_list **stack_b);
 
 #endif
