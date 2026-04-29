@@ -6,7 +6,7 @@
 /*   By: mschyns <mano.schyns@learner.42.tech>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 06:59:58 by mschyns           #+#    #+#             */
-/*   Updated: 2026/04/29 11:28:59 by mschyns          ###   ########.fr       */
+/*   Updated: 2026/04/29 14:32:38 by mschyns          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,12 @@ static int	get_min(t_list *lst)
 /*
 	Recherche le minimum et l'ajoute en haut de la liste b
 */
-static int	push_min_on_b(t_list **lst_a, t_list **lst_b, int len)
+static void	push_min_on_b(int *tab, t_list **lst_a, t_list **lst_b, int len)
 {
 	int	i;
 	int	j;
 	int	n_up;
-	int	count;
 
-	count = 0;
 	i = 0;
 	while (i < len)
 	{
@@ -60,36 +58,34 @@ static int	push_min_on_b(t_list **lst_a, t_list **lst_b, int len)
 		while (j < n_up)
 		{
 			ra(lst_a, 1);
+			tab[RA] += 1;
 			j ++;
 		}
-		count += j + 1;
 		pb(lst_a, lst_b);
+		tab[PB] += 1;
 		i ++;
 	}
-	return (count);
 }
 
 /*
 	tri de la liste chainee a par recherche du minimum	
 	return : le nombre d operations effectees
 */
-int	n2(t_list **lst_a, t_list **lst_b)
+void	n2(t_list **lst_a, t_list **lst_b ,int *tab)
 {
 	int	len;
 	int	i;
-	int	n_op;
 
-	n_op = 0;
 	i = 0;
 	len = get_size(*lst_a);
-	i = 0;
-	push_min_on_b(lst_a, lst_b, len);
+	push_min_on_b(tab, lst_a, lst_b, len);
 	while (i < len)
 	{
 		pa(lst_a, lst_b);
-		n_op ++;
+		tab[PA] += 1;
 		i ++;
 	}
-	return (n_op);
 }
 //printf("===> pour taille : %d, nombre d operations : %d", len, n_op);
+
+

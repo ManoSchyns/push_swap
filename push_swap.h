@@ -17,6 +17,9 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <limits.h>
+# include "libft/ft_printf.h"
+
+# define TAB_SIZE 11
 
 typedef struct s_list
 {
@@ -24,6 +27,21 @@ typedef struct s_list
 	int				index;
 	struct s_list	*next;
 }	t_list;
+
+typedef enum e_op
+{
+	SA,
+	SB,
+	SS,
+	PA,
+	PB,
+	RA,
+	RB,
+	RR,
+	RRA,
+	RRB,
+	RRR
+}	t_op;
 
 typedef enum e_strategy
 {
@@ -76,12 +94,13 @@ char	**ft_split(char const *s, char c);
 void	free_split(char **tab);
 void	free_stack(t_list **stack);
 void	assign_index(t_list *stack, int *indices);
+void	bench(int *tab, double disorder);
 double	compute_disorder(t_list	*lst);
 
 // -- sorting algorithms --
-int		n2(t_list **lst_a, t_list **lst_b);
-int		bucket_sort(t_list **lst_a, t_list **lst_b);
-void	radix_sort(t_list **stack_a, t_list **stack_b);
-void	adaptive_sort(t_list **stack_a, t_list **stack_b);
+void		n2(t_list **lst_a, t_list **lst_b, int *tab);
+void 		bucket_sort(t_list **lst_a, t_list **lst_b, int *tab);
+void		adaptive_sort(t_list **stack_a, t_list **stack_b, int *tab);
+void		radix_sort(t_list **stack_a, t_list **stack_b);
 
 #endif

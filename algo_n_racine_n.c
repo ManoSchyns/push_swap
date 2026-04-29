@@ -6,7 +6,7 @@
 /*   By: mschyns <mano.schyns@learner.42.tech>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 11:52:52 by mschyns           #+#    #+#             */
-/*   Updated: 2026/04/29 11:41:43 by mschyns          ###   ########.fr       */
+/*   Updated: 2026/04/29 14:47:48 by mschyns          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	racine_carree(int len)
 	cela va déjà les pre trier dans lst_b
 	return le nombre d'operation effectuées dans le pointeur count
 */
-void	send_by_racine_buckets(t_list	**lst_a, t_list **lst_b, int *count)
+void	send_by_racine_buckets(t_list	**lst_a, t_list **lst_b, int *tab)
 {
 	int			i;
 	int			n_bucket;
@@ -52,11 +52,14 @@ void	send_by_racine_buckets(t_list	**lst_a, t_list **lst_b, int *count)
 		if ((*lst_a)->index >= bucket.start && (*lst_a)->index < bucket.end)
 		{
 			pb(lst_a, lst_b);
+			tab[PB] += 1;
 			i ++;
 		}
 		else
+		{
+			tab[RA] += 1;
 			ra(lst_a, 1);
-		*count += 1;
+		}
 		if (i >= bucket.end)
 		{
 			bucket.end += n_bucket;
@@ -68,14 +71,14 @@ void	send_by_racine_buckets(t_list	**lst_a, t_list **lst_b, int *count)
 /*
 	Remonte au sommet de la liste b la valeur maximale presente dans celle-ci
 */
-void	move_max_up_on_b(int max_i, int len_b, t_list **lst_b, int *count)
+void	move_max_up_on_b(int max_i, int len_b, t_list **lst_b, int *tab)
 {
 	if (max_i < len_b / 2)
 	{
 		while (max_i > 0)
 		{
 			rb(lst_b, 1);
-			*count += 1;
+			tab[RB] += 1;
 			max_i --;
 		}
 	}
@@ -84,8 +87,8 @@ void	move_max_up_on_b(int max_i, int len_b, t_list **lst_b, int *count)
 		max_i = len_b - max_i;
 		while (max_i > 0)
 		{
+			tab[RRB] += 1;
 			rrb(lst_b, 1);
-			*count += 1;
 			max_i --;
 		}
 	}
@@ -94,7 +97,7 @@ void	move_max_up_on_b(int max_i, int len_b, t_list **lst_b, int *count)
 /*
 	Renvoie les max 1 a 1 de la liste b à la liste a
 */
-void	send_back_a(t_list **lst_a, t_list **lst_b, int *count)
+void	send_back_a(t_list **lst_a, t_list **lst_b, int *tab)
 {
 	int	max_i;
 	int	len_b;
@@ -103,9 +106,9 @@ void	send_back_a(t_list **lst_a, t_list **lst_b, int *count)
 	while (*lst_b != NULL)
 	{
 		max_i = get_max(*lst_b);
-		move_max_up_on_b(max_i, len_b, lst_b, count);
+		move_max_up_on_b(max_i, len_b, lst_b, tab);
 		pa(lst_a, lst_b);
-		*count += 1;
+		tab[PA] += 1;
 		len_b --;
 	}
 }
@@ -119,17 +122,14 @@ void	send_back_a(t_list **lst_a, t_list **lst_b, int *count)
 	Le tri s'effectue en envoyant dans b, par chunk les elements de a
 	Puis en recupérant de maniere efficace le maximum dans b et en le renvoyant dans a
 */
-int	bucket_sort(t_list **lst_a, t_list **lst_b)
+void	bucket_sort(t_list **lst_a, t_list **lst_b, int *tab)
 {
 	int	*index_tab;
-	int	count;
 
-	count = 0;
 	index_tab = index_array(*lst_a);
 	assign_index(*lst_a, index_tab);
-	send_by_racine_buckets(lst_a, lst_b, &count);
-	send_back_a(lst_a, lst_b, &count);
-	return (count);
+	send_by_racine_buckets(lst_a, lst_b, tab);
+	send_back_a(lst_a, lst_b, tab);
 }
 
 /*int main()

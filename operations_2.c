@@ -16,7 +16,7 @@
 	Décale tous les éléments de la pile a d'une position vers le haut.
 	Le premier élément devient le dernier.
 	Si flag == 1
-	-> affiche ra\n
+	-> afficher ra\n
 */
 void	ra(t_list	**lst, int flag)
 {

@@ -6,23 +6,51 @@
 /*   By: mschyns <mano.schyns@learner.42.tech>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:15:45 by mschyns           #+#    #+#             */
-/*   Updated: 2026/04/29 11:42:05 by mschyns          ###   ########.fr       */
+/*   Updated: 2026/04/29 14:45:48 by mschyns          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// MAIN TEMPORAIRE
+/*
+	Rempli le tableau de 0
+*/
+void full_0(int *tab, int size)
+{
+	int i;
 
+	i = 0;
+	while (i < size)
+	{
+		tab[i] = 0;
+		i ++;
+	}
+}
+
+void	apply_stategie(t_options options, t_list **stack_a, t_list **stack_b, int *tab)
+{
+	
+	if (options.strategy == STRAT_SIMPLE)
+		return (n2(stack_a, stack_b, tab));
+	else if (options.strategy == STRAT_COMPLEX)
+		return (radix_sort(stack_a, stack_b));
+	else if (options.strategy == STRAT_MEDIUM)
+		return (bucket_sort(stack_a, stack_b, tab));
+	else
+		return (adaptive_sort(stack_a, stack_b, tab));
+}
+
+// MAIN TEMPORAI
 int main(int argc, char **argv)
 {
     t_list      *stack_a;
     t_list      *stack_b;
     t_options   options;
-	int n_op;
+	int tab[TAB_SIZE];
+	double	disorder;
 
-	(void)n_op;
-    stack_a = NULL;
+	full_0(tab, TAB_SIZE);
+	stack_a = NULL;
     stack_b = NULL;
     options.strategy = STRAT_ADAPTIVE;
     options.bench = 0;
@@ -33,18 +61,11 @@ int main(int argc, char **argv)
         write(2, "Error\n", 6);
         free_stack(&stack_a);
         return (1);
-    }    
-    // bucket_sort(&stack_a, &stack_b);
-    // radix_sort(&stack_a, &stack_b);
-	// n2(&stack_a, &stack_b);
-	if (options.strategy == STRAT_SIMPLE)
-		n_op = n2(&stack_a, &stack_b);
-	else if (options.strategy == STRAT_COMPLEX)
-		radix_sort(&stack_a, &stack_b);
-	else if (options.strategy == STRAT_MEDIUM)
-		n_op = bucket_sort(&stack_a, &stack_b);
-	else
-		adaptive_sort(&stack_a, &stack_b);
+    }
+	disorder = compute_disorder(stack_a);
+    apply_stategie(options, &stack_a, &stack_b, tab);
+	if (options.bench = 1)
+		bench(tab, disorder);
     t_list *tmp = stack_a;
     while (tmp)
     {

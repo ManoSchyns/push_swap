@@ -6,7 +6,7 @@
 /*   By: mschyns <mano.schyns@learner.42.tech>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:14:00 by mschyns           #+#    #+#             */
-/*   Updated: 2026/04/29 11:41:24 by mschyns          ###   ########.fr       */
+/*   Updated: 2026/04/29 14:44:45 by mschyns          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ double	compute_disorder(t_list	*lst)
 	return (mistakes / total_pairs);
 }
 
-// TODO
-/*static int	handle_little_case(int len, t_list **lst_a)
+/*// TODO : Pour les petits cas ??
+static int	handle_little_case(int len, t_list **lst_a)
 {
 	if (len == 1)
 		return (0);
@@ -58,23 +58,19 @@ double	compute_disorder(t_list	*lst)
 			sa(*lst_a, 1);
 			return (1);
 		}
-		return (0);
 	}
-	if (len == 3)
-	{
-		
-	}
+	return (0);
 }*/
 
-void adaptive_sort(t_list **stack_a, t_list **stack_b)
+void adaptive_sort(t_list **stack_a, t_list **stack_b, int *tab)
 {
     double disorder;
 
     disorder = compute_disorder(*stack_a);
     if (disorder < 0.2)
-        n2(stack_a, stack_b);
+        n2(stack_a, stack_b, tab);
     else if (disorder < 0.5)
-        bucket_sort(stack_a, stack_b);
+        bucket_sort(stack_a, stack_b, tab);
     else
         radix_sort(stack_a, stack_b);
 }

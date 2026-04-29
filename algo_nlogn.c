@@ -6,7 +6,7 @@
 /*   By: mschyns <mano.schyns@learner.42.tech>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 08:46:39 by dle-gall          #+#    #+#             */
-/*   Updated: 2026/04/29 09:24:22 by mschyns          ###   ########.fr       */
+/*   Updated: 2026/04/29 14:36:41 by mschyns          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,7 @@ void radix_sort(t_list **stack_a, t_list **stack_b)
     int bit;
     int current_index;
     int bit_value;
-    int count;
 
-    count = 0;
     size = get_size(*stack_a);  // on obtiens le nombre d'elements
     indices = index_array(*stack_a); // créer les indices
     if (!indices)
@@ -135,14 +133,12 @@ void radix_sort(t_list **stack_a, t_list **stack_b)
                 pb(stack_a, stack_b); // si c'est 0 on envoie dans stack_b
             else
                 ra(stack_a, 1); // si c'est 1 on rotate dans stack_a
-            count ++;
             i++;
         }
         // on remet tout les elements de stack_b dans stack_a
         while (*stack_b != NULL)
         {
             pa(stack_a, stack_b);
-            count ++;
         }
         bit++; // on passe au bit suivant
     }
