@@ -21,7 +21,7 @@
 typedef struct s_list
 {
 	int				data;
-    int         index;
+    int             index;
 	struct s_list	*next;
 }	t_list;
 
@@ -57,7 +57,7 @@ int		is_valid_number(char *str);
 int		string_to_int(char *str, int *out);
 int		add_to_stack(t_list **stack, int value);
 int		parse_args(int argc, char **argv, t_list **stack_a, t_options *options);
-void    radix_sort(t_list **stack_a, t_list **stack_b, t_options *options);
+void    radix_sort(t_list **stack_a, t_list **stack_b);
 
 // -- utils -- 
 int		ft_isdigit(int c);
@@ -69,6 +69,7 @@ int		is_in_stack(t_list *stack, int value);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int     get_size(t_list *lst);
 double	compute_disorder(t_list	*lst);
+void    adaptive_sort(t_list **stack_a, t_list **stack_b);
 
 int	n2(t_list **lst_a, t_list **lst_b);
 void bucket_sort(t_list **lst_a, t_list **lst_b);
