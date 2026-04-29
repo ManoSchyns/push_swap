@@ -109,6 +109,8 @@ void	radix_sort(t_list **stack_a, t_list **stack_b, int *tab)
 	int			bits;
 	t_bucket	data;
 
+	if (pre_sort(stack_a))
+		return ;
 	size = get_size(*stack_a);
 	data.start = size;
 	indices = index_array(*stack_a);

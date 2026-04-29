@@ -48,7 +48,7 @@ int	main(int argc, char **argv)
 	t_options	options;
 	int			tab[TAB_SIZE];
 	double		disorder;
-	t_list		*tmp;
+	// t_list		*tmp;
 
 	full_0(tab, TAB_SIZE);
 	stack_a = NULL;
@@ -67,12 +67,12 @@ int	main(int argc, char **argv)
 	apply_stategie(options, &stack_a, &stack_b, tab);
 	if (options.bench == 1)
 		bench(tab, disorder, options);
-	tmp = stack_a;
+	/* tmp = stack_a;
 	while (tmp)
 	{
 		printf("\n%d a l index : %d\n", tmp->data, tmp->index);
 		tmp = tmp->next;
-	}
+	} */
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 	return (0);

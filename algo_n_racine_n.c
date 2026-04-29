@@ -125,6 +125,8 @@ void	bucket_sort(t_list **lst_a, t_list **lst_b, int *tab)
 {
 	int	*index_tab;
 
+	if (pre_sort(lst_a))
+		return ;
 	index_tab = index_array(*lst_a);
 	assign_index(*lst_a, index_tab);
 	send_by_racine_buckets(lst_a, lst_b, tab);

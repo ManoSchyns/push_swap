@@ -76,6 +76,8 @@ void	n2(t_list **lst_a, t_list **lst_b, int *tab)
 	int	len;
 	int	i;
 
+	if (pre_sort(lst_a))
+		return ;
 	i = 0;
 	len = get_size(*lst_a);
 	push_min_on_b(tab, lst_a, lst_b, len);

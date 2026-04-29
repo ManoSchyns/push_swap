@@ -17,7 +17,8 @@ SRCS = algo_adaptatif.c \
 	   parse_utils.c \
 	   parse.c \
 	   push_swap.c \
-	   push_swap_utils.c
+	   push_swap_utils.c \
+	   pre_sort.c
 
 OBJS = $(SRCS:.c=.o)
 
