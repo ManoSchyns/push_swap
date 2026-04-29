@@ -72,6 +72,8 @@ double	compute_disorder(t_list	*lst);
 void    adaptive_sort(t_list **stack_a, t_list **stack_b);
 
 int	n2(t_list **lst_a, t_list **lst_b);
-void bucket_sort(t_list **lst_a, t_list **lst_b);
+int bucket_sort(t_list **lst_a, t_list **lst_b);
+int *index_array(t_list *stack);
+void assign_index(t_list *stack, int *indices);
 
 #endif

@@ -168,6 +168,7 @@ int main(int argc, char **argv)
     t_list      *stack_a;
     t_list      *stack_b;
     t_options   options;
+	int n_op;
 
     stack_a = NULL;
     stack_b = NULL;
@@ -185,11 +186,11 @@ int main(int argc, char **argv)
     // radix_sort(&stack_a, &stack_b);
 	// n2(&stack_a, &stack_b);
 	if (options.strategy == STRAT_SIMPLE)
-		n2(&stack_a, &stack_b);
+		n_op = n2(&stack_a, &stack_b);
 	else if (options.strategy == STRAT_COMPLEX)
 		radix_sort(&stack_a, &stack_b);
 	else if (options.strategy == STRAT_MEDIUM)
-		bucket_sort(&stack_a, &stack_b);
+		n_op = bucket_sort(&stack_a, &stack_b);
 	else
 		adaptive_sort(&stack_a, &stack_b);
     t_list *tmp = stack_a;
@@ -198,6 +199,7 @@ int main(int argc, char **argv)
         printf("\n%d a l index : %d\n", tmp->data, tmp->index);
         tmp = tmp->next;
     }
+		printf("\n===operations : %d\n", n_op);
     free_stack(&stack_a);
     free_stack(&stack_b);
     return (0);
