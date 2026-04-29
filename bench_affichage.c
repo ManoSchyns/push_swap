@@ -12,10 +12,10 @@
 
 #include "push_swap.h"
 
-int count_tab (int *tab)
+int	count_tab(int *tab)
 {
-	int count;
-	int i;
+	int	count;
+	int	i;
 
 	i = 0;
 	count = 0;
@@ -24,15 +24,15 @@ int count_tab (int *tab)
 		count += tab[i];
 		i ++;
 	}
-	return  count;
+	return (count);
 }
 
 void	print_stategi_char(t_options options, double disorder)
 {
-	char *str_adap;
-	char *str_nlogn;
-	char *str_n_racine_n;
-	char *str_n2;
+	char	*str_adap;
+	char	*str_nlogn;
+	char	*str_n_racine_n;
+	char	*str_n2;
 
 	str_adap = "Adaptive / ";
 	str_n2 = "O(n²)";
@@ -42,11 +42,11 @@ void	print_stategi_char(t_options options, double disorder)
 	{
 		ft_printf("[bench] strategy:  %s", str_adap);
 		if (disorder < 0.2)
-        	ft_printf("%s\n", str_n2);
-   		 else if (disorder < 0.5)
-        	ft_printf("%s\n", str_n_racine_n);
-    	else
-        	ft_printf("%s\n", str_nlogn);
+			ft_printf("%s\n", str_n2);
+		else if (disorder < 0.5)
+			ft_printf("%s\n", str_n_racine_n);
+		else
+			ft_printf("%s\n", str_nlogn);
 	}
 	else if (options.strategy == STRAT_SIMPLE)
 		ft_printf("[bench] strategy:  %s\n", str_n2);
@@ -58,10 +58,10 @@ void	print_stategi_char(t_options options, double disorder)
 
 void	bench(int *tab, double disorder, t_options options)
 {
-	int total;
-	int nb;
-	int digit_1;
-	int digit_2;
+	int	total;
+	int	nb;
+	int	digit_1;
+	int	digit_2;
 
 	nb = (int)(disorder * 100);
 	digit_1 = (int)(disorder * 1000) % 10;
@@ -70,6 +70,9 @@ void	bench(int *tab, double disorder, t_options options)
 	ft_printf("[bench] disorder:  %d.%d%d%%\n", nb, digit_1, digit_2);
 	print_stategi_char(options, disorder);
 	ft_printf("[bench] total_ops:  %d\n", total);
-	ft_printf("[bench] sa:  %d  sb:  %d  ss:  %d  pa:  %d  pb:  %d\n", tab[SA], tab[SB], tab[SS], tab[PA], tab[PB]);
-	ft_printf("[bench] ra:  %d  rb:  %d  rr:  %d  rra:  %d  rrb:  %d  rrr:  %d\n", tab[RA], tab[RB], tab[RR], tab[RRA], tab[RRB],tab[RRR]);
-}	
+	ft_printf("[bench] sa:  %d  sb:  %d  ss:  %d  pa:  %d  pb:  %d\n",
+		tab[SA], tab[SB], tab[SS], tab[PA], tab[PB]);
+	ft_printf("[bench] ra:  %d  rb:  %d  rr: %d  \
+rra:  %d  rrb:  %d  rrr:  %d\n",
+		tab[RA], tab[RB], tab[RR], tab[RRA], tab[RRB], tab[RRR]);
+}

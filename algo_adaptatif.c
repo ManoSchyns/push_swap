@@ -46,7 +46,7 @@ double	compute_disorder(t_list	*lst)
 	return (mistakes / total_pairs);
 }
 
-/*// TODO : Pour les petits cas ??
+/* TODO : Pour les petits cas ??
 static int	handle_little_case(int len, t_list **lst_a)
 {
 	if (len == 1)
@@ -62,15 +62,15 @@ static int	handle_little_case(int len, t_list **lst_a)
 	return (0);
 }*/
 
-void adaptive_sort(t_list **stack_a, t_list **stack_b, int *tab)
+void	adaptive_sort(t_list **stack_a, t_list **stack_b, int *tab)
 {
-    double disorder;
+	double	disorder;
 
-    disorder = compute_disorder(*stack_a);
-    if (disorder < 0.2)
-        n2(stack_a, stack_b, tab);
-    else if (disorder < 0.5)
-        bucket_sort(stack_a, stack_b, tab);
-    else
-        radix_sort(stack_a, stack_b, tab);
+	disorder = compute_disorder(*stack_a);
+	if (disorder < 0.2)
+		n2(stack_a, stack_b, tab);
+	else if (disorder < 0.5)
+		bucket_sort(stack_a, stack_b, tab);
+	else
+		radix_sort(stack_a, stack_b, tab);
 }

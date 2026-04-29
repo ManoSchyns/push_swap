@@ -77,7 +77,7 @@ static	int	set_options(char *arg, t_options *options)
 		options->bench = 1;
 	else
 	{
-		write(2, "FlagsError\n", 11); // A MODIFIER AVANT DE RENDRE
+		write(2, "Error\n", 6);
 		return (0);
 	}
 	return (1);

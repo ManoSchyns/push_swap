@@ -40,13 +40,11 @@ static int	racine_carree(int len)
 void	send_by_racine_buckets(t_list	**lst_a, t_list **lst_b, int *tab)
 {
 	int			i;
-	int			n_bucket;
 	t_bucket	bucket;
 
-	n_bucket = racine_carree(get_size(*lst_a));
 	i = 0;
 	bucket.start = 0;
-	bucket.end = n_bucket;
+	bucket.end = racine_carree(get_size(*lst_a));
 	while (*lst_a != NULL)
 	{
 		if ((*lst_a)->index >= bucket.start && (*lst_a)->index < bucket.end)
@@ -62,8 +60,8 @@ void	send_by_racine_buckets(t_list	**lst_a, t_list **lst_b, int *tab)
 		}
 		if (i >= bucket.end)
 		{
-    		bucket.start = bucket.end;
-    		bucket.end += n_bucket;
+			bucket.start = bucket.end;
+			bucket.end += racine_carree(get_size(*lst_a));
 		}
 	}
 }
@@ -120,7 +118,8 @@ void	send_back_a(t_list **lst_a, t_list **lst_b, int *tab)
 	Ces sous listes ne sont pas crées mais representée par des index
 
 	Le tri s'effectue en envoyant dans b, par chunk les elements de a
-	Puis en recupérant de maniere efficace le maximum dans b et en le renvoyant dans a
+	Puis en recupérant de maniere efficace le maximum dans b 
+	et en le renvoyant dans a
 */
 void	bucket_sort(t_list **lst_a, t_list **lst_b, int *tab)
 {
@@ -134,6 +133,6 @@ void	bucket_sort(t_list **lst_a, t_list **lst_b, int *tab)
 
 /*int main()
 {
-    
-    printf("%d\n", b);
+	
+	printf("%d\n", b);
 }*/

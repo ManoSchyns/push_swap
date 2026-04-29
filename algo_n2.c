@@ -71,7 +71,7 @@ static void	push_min_on_b(int *tab, t_list **lst_a, t_list **lst_b, int len)
 	tri de la liste chainee a par recherche du minimum	
 	return : le nombre d operations effectees
 */
-void	n2(t_list **lst_a, t_list **lst_b ,int *tab)
+void	n2(t_list **lst_a, t_list **lst_b, int *tab)
 {
 	int	len;
 	int	i;
@@ -86,6 +86,3 @@ void	n2(t_list **lst_a, t_list **lst_b ,int *tab)
 		i ++;
 	}
 }
-//printf("===> pour taille : %d, nombre d operations : %d", len, n_op);
-
-

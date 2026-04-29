@@ -98,9 +98,9 @@ void	bench(int *tab, double disorder, t_options options);
 double	compute_disorder(t_list	*lst);
 
 // -- sorting algorithms --
-void		n2(t_list **lst_a, t_list **lst_b, int *tab);
-void 		bucket_sort(t_list **lst_a, t_list **lst_b, int *tab);
-void		adaptive_sort(t_list **stack_a, t_list **stack_b, int *tab);
-void		radix_sort(t_list **stack_a, t_list **stack_b, int *tab);
+void	n2(t_list **lst_a, t_list **lst_b, int *tab);
+void	bucket_sort(t_list **lst_a, t_list **lst_b, int *tab);
+void	adaptive_sort(t_list **stack_a, t_list **stack_b, int *tab);
+void	radix_sort(t_list **stack_a, t_list **stack_b, int *tab);
 
 #endif

@@ -15,21 +15,21 @@
 /*
 	Rempli le tableau de 0
 */
-void full_0(int *tab, int size)
+void	full_0(int *tab, int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < size)
 	{
 		tab[i] = 0;
-		i ++;
+		i++;
 	}
 }
 
-void	apply_stategie(t_options options, t_list **stack_a, t_list **stack_b, int *tab)
+void	apply_stategie(t_options options, t_list **stack_a, t_list **stack_b,
+		int *tab)
 {
-	
 	if (options.strategy == STRAT_SIMPLE)
 		return (n2(stack_a, stack_b, tab));
 	else if (options.strategy == STRAT_COMPLEX)
@@ -41,39 +41,39 @@ void	apply_stategie(t_options options, t_list **stack_a, t_list **stack_b, int *
 }
 
 // MAIN TEMPORAI
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    t_list      *stack_a;
-    t_list      *stack_b;
-    t_options   options;
-	int tab[TAB_SIZE];
-	double	disorder;
+	t_list		*stack_a;
+	t_list		*stack_b;
+	t_options	options;
+	int			tab[TAB_SIZE];
+	double		disorder;
+	t_list		*tmp;
 
 	full_0(tab, TAB_SIZE);
 	stack_a = NULL;
-    stack_b = NULL;
-    options.strategy = STRAT_ADAPTIVE;
-    options.bench = 0;
-    if (argc < 2)
-        return (0);
-    if (!parse_args(argc, argv, &stack_a, &options))
-    {
-        write(2, "Error\n", 6);
-        free_stack(&stack_a);
-        return (1);
-    }
+	stack_b = NULL;
+	options.strategy = STRAT_ADAPTIVE;
+	options.bench = 0;
+	if (argc < 2)
+		return (0);
+	if (!parse_args(argc, argv, &stack_a, &options))
+	{
+		write(2, "Error\n", 6);
+		free_stack(&stack_a);
+		return (1);
+	}
 	disorder = compute_disorder(stack_a);
-    apply_stategie(options, &stack_a, &stack_b, tab);
+	apply_stategie(options, &stack_a, &stack_b, tab);
 	if (options.bench == 1)
 		bench(tab, disorder, options);
-    t_list *tmp = stack_a;
-    while (tmp)
-    {
-        printf("\n%d a l index : %d\n", tmp->data, tmp->index);
-        tmp = tmp->next;
-    }
-	//	printf("\n===operations : %d\n", n_op);
-    free_stack(&stack_a);
-    free_stack(&stack_b);
-    return (0);
+	tmp = stack_a;
+	while (tmp)
+	{
+		printf("\n%d a l index : %d\n", tmp->data, tmp->index);
+		tmp = tmp->next;
+	}
+	free_stack(&stack_a);
+	free_stack(&stack_b);
+	return (0);
 }
