@@ -9,6 +9,7 @@ SRCS = algo_adaptatif.c \
 	   algo_n_racine_n.c \
 	   algo_n2.c \
 	   algo_nlogn.c \
+	   bench_affichage.c \
 	   ft_split.c \
 	   operations_1.c \
 	   operations_2.c \
@@ -16,7 +17,7 @@ SRCS = algo_adaptatif.c \
 	   parse_utils.c \
 	   parse.c \
 	   push_swap.c \
-	   push_swap_utils.c 
+	   push_swap_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
