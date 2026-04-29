@@ -1,6 +1,10 @@
 NAME = push_swap
 CC = cc
 FLAGS = -Wall -Wextra -Werror
+
+LIBFT_DIR	= libft
+LIBFT		= $(LIBFT_DIR)/libft.a
+
 SRCS = algo_adaptatif.c \
 	   algo_n_racine_n.c \
 	   algo_n2.c \
@@ -18,17 +22,22 @@ OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+$(LIBFT):
+	make re -C $(LIBFT_DIR)
+
+$(NAME): $(LIBFT) $(OBJS)
+	$(CC) $(FLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
+	make clean -C $(LIBFT_DIR)
 
 fclean: clean
 	rm -f $(NAME)
+	make fclean -C $(LIBFT_DIR)
 
 re: fclean all
 
