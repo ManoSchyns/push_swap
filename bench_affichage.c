@@ -6,7 +6,7 @@
 /*   By: mschyns <mano.schyns@learner.42.tech>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 13:58:14 by mschyns           #+#    #+#             */
-/*   Updated: 2026/04/29 15:35:44 by mschyns          ###   ########.fr       */
+/*   Updated: 2026/04/29 15:52:27 by mschyns          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,15 @@ void	print_stategi_char(t_options options, double disorder)
 void	bench(int *tab, double disorder, t_options options)
 {
 	int total;
+	int nb;
+	int digit_1;
+	int digit_2;
 
+	nb = (int)(disorder * 100);
+	digit_1 = (int)(disorder * 1000) % 10;
+	digit_2 = (int)(disorder * 10000) % 10;
 	total = count_tab(tab);
-	ft_printf("[bench] disorder:  %d%%\n", (int)(disorder * 100));
+	ft_printf("[bench] disorder:  %d.%d%d%%\n", nb, digit_1, digit_2);
 	print_stategi_char(options, disorder);
 	ft_printf("[bench] total_ops:  %d\n", total);
 	ft_printf("[bench] sa:  %d  sb:  %d  ss:  %d  pa:  %d  pb:  %d\n", tab[SA], tab[SB], tab[SS], tab[PA], tab[PB]);
