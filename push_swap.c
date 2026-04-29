@@ -6,7 +6,7 @@
 /*   By: mschyns <mano.schyns@learner.42.tech>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:15:45 by mschyns           #+#    #+#             */
-/*   Updated: 2026/04/29 14:45:48 by mschyns          ###   ########.fr       */
+/*   Updated: 2026/04/29 15:24:45 by mschyns          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	apply_stategie(t_options options, t_list **stack_a, t_list **stack_b, int *
 	if (options.strategy == STRAT_SIMPLE)
 		return (n2(stack_a, stack_b, tab));
 	else if (options.strategy == STRAT_COMPLEX)
-		return (radix_sort(stack_a, stack_b));
+		return (radix_sort(stack_a, stack_b, tab));
 	else if (options.strategy == STRAT_MEDIUM)
 		return (bucket_sort(stack_a, stack_b, tab));
 	else
@@ -64,8 +64,8 @@ int main(int argc, char **argv)
     }
 	disorder = compute_disorder(stack_a);
     apply_stategie(options, &stack_a, &stack_b, tab);
-	if (options.bench = 1)
-		bench(tab, disorder);
+	if (options.bench == 1)
+		bench(tab, disorder, options);
     t_list *tmp = stack_a;
     while (tmp)
     {

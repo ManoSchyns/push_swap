@@ -6,7 +6,7 @@
 /*   By: mschyns <mano.schyns@learner.42.tech>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:14:00 by mschyns           #+#    #+#             */
-/*   Updated: 2026/04/29 14:44:45 by mschyns          ###   ########.fr       */
+/*   Updated: 2026/04/29 14:59:13 by mschyns          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,5 @@ void adaptive_sort(t_list **stack_a, t_list **stack_b, int *tab)
     else if (disorder < 0.5)
         bucket_sort(stack_a, stack_b, tab);
     else
-        radix_sort(stack_a, stack_b);
+        radix_sort(stack_a, stack_b, tab);
 }

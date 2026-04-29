@@ -6,7 +6,7 @@
 /*   By: mschyns <mano.schyns@learner.42.tech>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 08:46:39 by dle-gall          #+#    #+#             */
-/*   Updated: 2026/04/29 14:54:00 by mschyns          ###   ########.fr       */
+/*   Updated: 2026/04/29 15:02:40 by mschyns          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,33 +72,45 @@ void	assign_index(t_list *stack, int *indices)
 	}
 }
 
-static void	process_bit(t_list **stack_a, t_list **stack_b, int bit, int size)
+static void	process_bit(t_list **stack_a, t_list **stack_b,
+	t_bucket data, int *tab)
 {
 	int	i;
 	int	bit_value;
 
 	i = 0;
-	while (i < size)
+	while (i < data.start)
 	{
-		bit_value = ((*stack_a)->index >> bit) & 1;
+		bit_value = ((*stack_a)->index >> data.end) & 1;
 		if (bit_value == 0)
+		{
+			tab[PB] += 1;
 			pb(stack_a, stack_b);
+		}
 		else
+		{
+			tab[RA] += 1;
 			ra(stack_a, 1);
+		}
 		i++;
 	}
 	while (*stack_b != NULL)
+	{
+		tab[PA] += 1;
 		pa(stack_a, stack_b);
+	}
 }
 
-void	radix_sort(t_list **stack_a, t_list **stack_b)
+void	radix_sort(t_list **stack_a, t_list **stack_b, int *tab)
 {
-	int	*indices;
-	int	size;
-	int	max_bits;
-	int	bits;
+	int			*indices;
+	int			size;
+	int			max_bits;
+	int			bits;
+	t_bucket	data;
 
 	size = get_size(*stack_a);
+	data.start = size;
 	indices = index_array(*stack_a);
 	if (!indices)
 		return ;
@@ -106,10 +118,11 @@ void	radix_sort(t_list **stack_a, t_list **stack_b)
 	free(indices);
 	max_bits = get_max_bits(size);
 	bits = 0;
-	while (bits < max_bits)
+	data.end = bits;
+	while (data.end < max_bits)
 	{
-		process_bit(stack_a, stack_b, bits, size);
-		bits++;
+		process_bit(stack_a, stack_b, data, tab);
+		data.end++;
 	}
 }
 

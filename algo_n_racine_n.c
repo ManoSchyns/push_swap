@@ -6,7 +6,7 @@
 /*   By: mschyns <mano.schyns@learner.42.tech>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 11:52:52 by mschyns           #+#    #+#             */
-/*   Updated: 2026/04/29 14:47:48 by mschyns          ###   ########.fr       */
+/*   Updated: 2026/04/29 15:14:58 by mschyns          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	send_by_racine_buckets(t_list	**lst_a, t_list **lst_b, int *tab)
 		}
 		if (i >= bucket.end)
 		{
-			bucket.end += n_bucket;
-			bucket.end += n_bucket;
+    		bucket.start = bucket.end;
+    		bucket.end += n_bucket;
 		}
 	}
 }
@@ -85,7 +85,7 @@ void	move_max_up_on_b(int max_i, int len_b, t_list **lst_b, int *tab)
 	else
 	{
 		max_i = len_b - max_i;
-		while (max_i > 0)
+		while (*lst_b != NULL && (*lst_b)->next != NULL && max_i > 0)
 		{
 			tab[RRB] += 1;
 			rrb(lst_b, 1);
