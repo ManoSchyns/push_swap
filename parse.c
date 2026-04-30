@@ -65,20 +65,22 @@ int	add_to_stack(t_list **stack, int value)
 */
 static	int	set_options(char *arg, t_options *options)
 {
-	if (ft_strncmp(arg, "--simple", 8) == 0)
+	static int	flag;
+
+	if (!flag && ft_strncmp(arg, "--simple", 8) == 0)
 		options->strategy = STRAT_SIMPLE;
-	else if (ft_strncmp(arg, "--medium", 8) == 0)
+	else if (!flag && ft_strncmp(arg, "--medium", 8) == 0)
 		options->strategy = STRAT_MEDIUM;
-	else if (ft_strncmp(arg, "--complex", 9) == 0)
+	else if (!flag && ft_strncmp(arg, "--complex", 9) == 0)
 		options->strategy = STRAT_COMPLEX;
-	else if (ft_strncmp(arg, "--adaptive", 10) == 0)
+	else if (!flag && ft_strncmp(arg, "--adaptive", 10) == 0)
 		options->strategy = STRAT_ADAPTIVE;
-	else if (ft_strncmp(arg, "--bench", 7) == 0)
+	else if (options->bench == 0 && ft_strncmp(arg, "--bench", 7) == 0)
 		options->bench = 1;
 	else
-	{
 		return (0);
-	}
+	if (options->bench == 0)
+		flag = 1;
 	return (1);
 }
 
