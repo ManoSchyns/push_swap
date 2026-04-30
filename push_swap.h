@@ -85,7 +85,7 @@ int		parse_args(int argc, char **argv, t_list **stack_a, t_options *options);
 // -- utils -- 
 int		ft_isdigit(int c);
 int		is_in_stack(t_list *stack, int value);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_strncmp(const char *s1, const char *s2);
 int		get_size(t_list *lst);
 int		process_token(char *token, t_list **stack_a);
 int		*index_array(t_list *stack);

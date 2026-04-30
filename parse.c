@@ -67,15 +67,15 @@ static	int	set_options(char *arg, t_options *options)
 {
 	static int	flag;
 
-	if (!flag && ft_strncmp(arg, "--simple", 8) == 0)
+	if (!flag && ft_strncmp(arg, "--simple") == 0)
 		options->strategy = STRAT_SIMPLE;
-	else if (!flag && ft_strncmp(arg, "--medium", 8) == 0)
+	else if (!flag && ft_strncmp(arg, "--medium") == 0)
 		options->strategy = STRAT_MEDIUM;
-	else if (!flag && ft_strncmp(arg, "--complex", 9) == 0)
+	else if (!flag && ft_strncmp(arg, "--complex") == 0)
 		options->strategy = STRAT_COMPLEX;
-	else if (!flag && ft_strncmp(arg, "--adaptive", 10) == 0)
+	else if (!flag && ft_strncmp(arg, "--adaptive") == 0)
 		options->strategy = STRAT_ADAPTIVE;
-	else if (options->bench == 0 && ft_strncmp(arg, "--bench", 7) == 0)
+	else if (options->bench == 0 && ft_strncmp(arg, "--bench") == 0)
 		options->bench = 1;
 	else
 		return (0);
