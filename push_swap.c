@@ -64,7 +64,7 @@ int	main(int argc, char **argv)
 		return (0);
 	if (!parse_args(argc, argv, &stack_a, &options))
 	{
-		write(2, "Error\n", 6);
+		ft_printf("Error\n");
 		free_stack(&stack_a);
 		return (1);
 	}
