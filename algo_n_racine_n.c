@@ -6,7 +6,7 @@
 /*   By: mschyns <mano.schyns@learner.42.tech>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 11:52:52 by mschyns           #+#    #+#             */
-/*   Updated: 2026/04/30 07:52:36 by mschyns          ###   ########.fr       */
+/*   Updated: 2026/04/30 09:05:14 by mschyns          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,11 @@ void	send_by_racine_buckets(t_list	**lst_a, t_list **lst_b, int *tab)
 	{
 		if ((*lst_a)->index >= bucket.start && (*lst_a)->index < bucket.end)
 		{
-			pb(lst_a, lst_b);
-			tab[PB] += 1;
+			pb(lst_a, lst_b, tab);
 			i ++;
 		}
 		else
-		{
-			tab[RA] += 1;
-			ra(lst_a, 1);
-		}
+			ra(lst_a, 1, tab);
 		if (i >= bucket.end)
 		{
 			bucket.start = bucket.end;
@@ -75,8 +71,7 @@ void	move_max_up_on_b(int max_i, int len_b, t_list **lst_b, int *tab)
 	{
 		while (max_i > 0)
 		{
-			rb(lst_b, 1);
-			tab[RB] += 1;
+			rb(lst_b, 1, tab);
 			max_i --;
 		}
 	}
@@ -85,8 +80,7 @@ void	move_max_up_on_b(int max_i, int len_b, t_list **lst_b, int *tab)
 		max_i = len_b - max_i;
 		while (*lst_b != NULL && (*lst_b)->next != NULL && max_i > 0)
 		{
-			tab[RRB] += 1;
-			rrb(lst_b, 1);
+			rrb(lst_b, 1, tab);
 			max_i --;
 		}
 	}
@@ -105,8 +99,7 @@ void	send_back_a(t_list **lst_a, t_list **lst_b, int *tab)
 	{
 		max_i = get_max(*lst_b);
 		move_max_up_on_b(max_i, len_b, lst_b, tab);
-		pa(lst_a, lst_b);
-		tab[PA] += 1;
+		pa(lst_a, lst_b, tab);
 		len_b --;
 	}
 }

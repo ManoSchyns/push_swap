@@ -64,17 +64,17 @@ typedef struct s_bucket
 }	t_bucket;
 
 // -- ops --
-void	sa(t_list *lst_a, int flag);
-void	sb(t_list *lst_b, int flag);
-void	ss(t_list *lst_a, t_list *lst_b);
-void	pa(t_list **lst_a, t_list **lst_b);
-void	pb(t_list **lst_a, t_list **lst_b);
-void	ra(t_list	**lst, int flag);
-void	rb(t_list	**lst, int flag);
-void	rr(t_list **lst_a, t_list **lst_b);
-void	rra(t_list **lst, int flag);
-void	rrb(t_list **lst, int flag);
-void	rrr(t_list **lst_a, t_list **lst_b);
+void	sa(t_list *lst_a, int flag, int *tab);
+void	sb(t_list *lst_b, int flag, int *tab);
+void	ss(t_list *lst_a, t_list *lst_b, int *tab);
+void	pa(t_list **lst_a, t_list **lst_b, int *tab);
+void	pb(t_list **lst_a, t_list **lst_b, int *tab);
+void	ra(t_list	**lst, int flag, int *tab);
+void	rb(t_list	**lst, int flag, int *tab);
+void	rr(t_list **lst_a, t_list **lst_b, int *tab);
+void	rra(t_list **lst, int flag, int *tab);
+void	rrb(t_list **lst, int flag, int *tab);
+void	rrr(t_list **lst_a, t_list **lst_b, int *tab);
 
 // -- parsing --
 int		is_valid_number(char *str);

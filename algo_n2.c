@@ -6,7 +6,7 @@
 /*   By: mschyns <mano.schyns@learner.42.tech>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 06:59:58 by mschyns           #+#    #+#             */
-/*   Updated: 2026/04/30 07:06:44 by mschyns          ###   ########.fr       */
+/*   Updated: 2026/04/30 09:43:36 by mschyns          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,21 @@ static void	push_min_on_b(int *tab, t_list **lst_a, t_list **lst_b, int len)
 	{
 		j = 0;
 		n_up = get_min(*lst_a);
-		while (j < n_up)
+		if (n_up <= get_size(*lst_a) / 2)
 		{
-			ra(lst_a, 1);
-			tab[RA] += 1;
-			j ++;
+			while (j++ < n_up)
+				ra(lst_a, 1, tab);
 		}
-		pb(lst_a, lst_b);
-		tab[PB] += 1;
-		i ++;
+		else
+		{
+			while (n_up + j < get_size(*lst_a))
+			{
+				j ++;
+				rra(lst_a, 1, tab);
+			}
+		}
+		pb(lst_a, lst_b, tab);
+		i++;
 	}
 }
 
@@ -83,8 +89,7 @@ void	n2(t_list **lst_a, t_list **lst_b, int *tab)
 	push_min_on_b(tab, lst_a, lst_b, len);
 	while (i < len)
 	{
-		pa(lst_a, lst_b);
-		tab[PA] += 1;
+		pa(lst_a, lst_b, tab);
 		i ++;
 	}
 }

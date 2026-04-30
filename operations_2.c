@@ -18,7 +18,7 @@
 	Si flag == 1
 	-> afficher ra\n
 */
-void	ra(t_list	**lst, int flag)
+void	ra(t_list	**lst, int flag, int *tab)
 {
 	t_list	*first;
 	t_list	*work;
@@ -33,7 +33,10 @@ void	ra(t_list	**lst, int flag)
 	work->next = first;
 	first->next = NULL;
 	if (flag)
+	{
 		write (1, "ra\n", 3);
+		tab[RA] += 1;
+	}
 }
 
 /*
@@ -42,7 +45,7 @@ void	ra(t_list	**lst, int flag)
 	Si flag == 1
 	-> affiche rb\n
 */
-void	rb(t_list	**lst, int flag)
+void	rb(t_list	**lst, int flag, int *tab)
 {
 	t_list	*first;
 	t_list	*work;
@@ -57,16 +60,20 @@ void	rb(t_list	**lst, int flag)
 	work->next = first;
 	first->next = NULL;
 	if (flag)
+	{
 		write (1, "rb\n", 3);
+		tab[RB] += 1;
+	}
 }
 
 /*
 	ra and rb en même temps.
 	-> affiche rr\n
 */
-void	rr(t_list **lst_a, t_list **lst_b)
+void	rr(t_list **lst_a, t_list **lst_b, int *tab)
 {
-	ra(lst_a, 0);
-	rb(lst_b, 0);
+	ra(lst_a, 0, tab);
+	rb(lst_b, 0, tab);
 	write(1, "rr\n", 3);
+	tab[RR] += 1;
 }

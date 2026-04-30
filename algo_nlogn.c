@@ -6,7 +6,7 @@
 /*   By: mschyns <mano.schyns@learner.42.tech>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 08:46:39 by dle-gall          #+#    #+#             */
-/*   Updated: 2026/04/30 07:06:52 by mschyns          ###   ########.fr       */
+/*   Updated: 2026/04/30 09:03:50 by mschyns          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,22 +83,13 @@ static void	process_bit(t_list **stack_a, t_list **stack_b,
 	{
 		bit_value = ((*stack_a)->index >> data.end) & 1;
 		if (bit_value == 0)
-		{
-			tab[PB] += 1;
-			pb(stack_a, stack_b);
-		}
+			pb(stack_a, stack_b, tab);
 		else
-		{
-			tab[RA] += 1;
-			ra(stack_a, 1);
-		}
+			ra(stack_a, 1, tab);
 		i++;
 	}
 	while (*stack_b != NULL)
-	{
-		tab[PA] += 1;
-		pa(stack_a, stack_b);
-	}
+		pa(stack_a, stack_b, tab);
 }
 
 void	radix_sort(t_list **stack_a, t_list **stack_b, int *tab)

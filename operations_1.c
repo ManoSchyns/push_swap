@@ -17,7 +17,7 @@
 	Ne fait rien s'il n'y a qu'un seul élément ou aucun.
 	Si flag == 1 -> affiche sa\n
 */
-void	sa(t_list *lst_a, int flag)
+void	sa(t_list *lst_a, int flag, int *tab)
 {
 	int	temp;
 
@@ -29,7 +29,10 @@ void	sa(t_list *lst_a, int flag)
 	lst_a->data = lst_a->next->data;
 	lst_a->next->data = temp;
 	if (flag)
+	{
 		write (1, "sa\n", 3);
+		tab[SA] += 1;
+	}
 }
 
 /*
@@ -37,7 +40,7 @@ void	sa(t_list *lst_a, int flag)
 	Ne fait rien s'il n'y a qu'un seul élément ou s'il n'y en a aucun.
 	Si flag == 1 -> affiche sb\n
 */
-void	sb(t_list *lst_b, int flag)
+void	sb(t_list *lst_b, int flag, int *tab)
 {
 	int	temp;
 
@@ -49,18 +52,22 @@ void	sb(t_list *lst_b, int flag)
 	lst_b->data = lst_b->next->data;
 	lst_b->next->data = temp;
 	if (flag)
+	{
 		write (1, "sb\n", 3);
+		tab[SB] += 1;
+	}
 }
 
 /*
 	Échange les deux premiers éléments en haut de la pile a et b.
 	-> Affiche ss\n
 */
-void	ss(t_list *lst_a, t_list *lst_b)
+void	ss(t_list *lst_a, t_list *lst_b, int *tab)
 {
-	sa(lst_a, 0);
-	sb(lst_b, 0);
+	sa(lst_a, 0, tab);
+	sb(lst_b, 0, tab);
 	write (1, "ss\n", 3);
+	tab[SS] += 1;
 }
 
 /*
@@ -68,7 +75,7 @@ void	ss(t_list *lst_a, t_list *lst_b)
 	Ne fait rien si b est vide.
 	-> Affiche pa\n
 */
-void	pa(t_list **lst_a, t_list **lst_b)
+void	pa(t_list **lst_a, t_list **lst_b, int *tab)
 {
 	t_list	*to_add;
 
@@ -79,6 +86,7 @@ void	pa(t_list **lst_a, t_list **lst_b)
 	to_add->next = *lst_a;
 	*lst_a = to_add;
 	write(1, "pa\n", 3);
+	tab[PA] += 1;
 }
 
 /*
@@ -86,7 +94,7 @@ void	pa(t_list **lst_a, t_list **lst_b)
 	Ne fait rien si a est vide.
 	-> print pb\n
 */
-void	pb(t_list **lst_a, t_list **lst_b)
+void	pb(t_list **lst_a, t_list **lst_b, int *tab)
 {
 	t_list	*to_add;
 
@@ -97,4 +105,5 @@ void	pb(t_list **lst_a, t_list **lst_b)
 	to_add->next = *lst_b;
 	*lst_b = to_add;
 	write(1, "pb\n", 3);
+	tab[PB] += 1;
 }

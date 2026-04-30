@@ -36,7 +36,7 @@ static t_list	*get_last(t_list *lst)
 	Le dernier élément devient le premier
 	-> affiche rra\n si flag = 1
 */
-void	rra(t_list **lst, int flag)
+void	rra(t_list **lst, int flag, int *tab)
 {
 	t_list	*to_add;
 
@@ -46,7 +46,10 @@ void	rra(t_list **lst, int flag)
 	to_add->next = *lst;
 	*lst = to_add;
 	if (flag)
+	{
 		write (1, "rra\n", 4);
+		tab[RRA] += 1;
+	}
 }
 
 /*
@@ -54,7 +57,7 @@ void	rra(t_list **lst, int flag)
 	Le dernier élément devient le premier.
 	-> affiche rrb\n si flag = 1
 */
-void	rrb(t_list **lst, int flag)
+void	rrb(t_list **lst, int flag, int *tab)
 {
 	t_list	*to_add;
 
@@ -64,16 +67,20 @@ void	rrb(t_list **lst, int flag)
 	to_add->next = *lst;
 	*lst = to_add;
 	if (flag)
+	{
 		write (1, "rrb\n", 4);
+		tab[RRB] += 1;
+	}
 }
 
 /*
 	rra et rrb en même temps
 	-> affiche rrr\n
 */
-void	rrr(t_list **lst_a, t_list **lst_b)
+void	rrr(t_list **lst_a, t_list **lst_b, int *tab)
 {
-	rra(lst_a, 0);
-	rrb(lst_b, 0);
+	rra(lst_a, 0, tab);
+	rrb(lst_b, 0, tab);
 	write (1, "rrr\n", 4);
+	tab[RRR] += 1;
 }
