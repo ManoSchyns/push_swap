@@ -6,7 +6,7 @@
 /*   By: mschyns <mano.schyns@learner.42.tech>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 11:52:52 by mschyns           #+#    #+#             */
-/*   Updated: 2026/04/30 09:05:14 by mschyns          ###   ########.fr       */
+/*   Updated: 2026/04/30 11:56:12 by mschyns          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,4 +124,5 @@ void	bucket_sort(t_list **lst_a, t_list **lst_b, int *tab)
 	assign_index(*lst_a, index_tab);
 	send_by_racine_buckets(lst_a, lst_b, tab);
 	send_back_a(lst_a, lst_b, tab);
+	free(index_tab);
 }

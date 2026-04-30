@@ -30,8 +30,8 @@ detailed metrics to standard error (disorder, chosen strategy, total
 operations, and breakdown by operation type).
 
 Target performance objectives are:
-- 100 integers: fewer than 700 operations for excellent performance.
-- 500 integers: fewer than 5500 operations for excellent performance.
+- 100 integers: less than 2000 operations to pass, 1500 for good performance, 700 for excellent performance.
+- 500 integers: less than 12000 operations to pass, 8000 for good performance, 5500 for excellent performance.
 
 ## Instructions
 
@@ -87,7 +87,22 @@ ARG="5 3 1 4 2" && ./push_swap $ARG | ./checker/fedora_checker $ARG
 AI (Claude) was used solely to help write this README.
 No line of code in the project was generated or modified by AI.
 
----
+## Details of the algorithms
+
+For this project, for each complexity (n², n log n, n√n), the problem provides example algorithms. After researching them, we decided to choose the following three:
+
+- **Selection sort by minimum** — O(n²)
+- **Bucket sort adapted for √n** — O(n√n)
+- **LSD radix sort** — O(n log n)
+
+After choosing these algorithms, we had to adapt them to the constraints of the subject, which are operations on linked lists (pa, ra, pb, etc...) while ensuring we remained within the desired complexity (in terms of operation cost).
+
+*A more detailed description of what they do and the adaptive algorithm :*
+
+- **Simple** — O(n²): selection sort by minimum — locates the minimum of `a`, rotates it to the top, then pushes it onto `b`, repeats n times; then transfers everything back to `a` via `pa`.
+- **Medium** — O(n√n): bucket sort — assigns a rank to each integer, distributes the n elements into √n buckets of size √n, transfers them group by group into `b` according to this rank, then retrieves successive maxima back to `a`.
+- **Complex** — O(n log n): LSD radix sort — assigns a rank to each integer, performs log₂(n) bit-by-bit passes from least to most significant; on each pass, pushes elements whose bit is 0 onto `b`, then brings them back to `a`.
+- **Adaptive** — dynamically selects the method based on the **disorder** of the stack (ratio of inversions over total pairs): **Simple** if disorder < 0.2, **Medium** if < 0.5, **Complex** otherwise. This is the default strategy.
 
 # FR - push_swap
 
@@ -118,9 +133,9 @@ La stratégie peut être forcée au lancement via les options `--simple`,
 d'afficher sur la sortie d'erreur des métriques détaillées (désordre, 
 stratégie choisie, total d'opérations et décompte par type d'opération).
 
-Les objectifs de performance visés sont :
-- 100 entiers : moins de 700 opérations pour une performance excellente.
-- 500 entiers : moins de 5500 opérations pour une performance excellente.
+Les objectifs de performance cibles sont les suivants :
+- 100 entiers : moins de 2 000 opérations pour réussir, 1 500 pour une bonne performance, 700 pour une excellente performance.
+- 500 entiers : moins de 12 000 opérations pour réussir, 8 000 pour une bonne performance, 5 500 pour une excellente performance.
 
 ## Instructions
 
@@ -176,3 +191,23 @@ ARG="5 3 1 4 2" && ./push_swap $ARG | ./checker/fedora_checker $ARG
 L'IA (Claude) a été utilisée uniquement pour aider à la rédaction et à la 
 traduction de ce README.
 Aucune ligne de code du projet n'a été générée ou modifiée par l'IA.
+
+## Details of the algorithms
+
+Pour ce projet, pour chaque complexité (n², n log n, n√n), le problème fournit des exemples d'algorithmes. Après les avoir étudiés, nous avons sélectionné les trois suivants :
+
+- **Selection sort by minimum** — O(n²)
+- **Bucket sort adapted for √n** — O(n√n)
+- **LSD radix sort** — O(n log n)
+
+Après avoir choisi ces algorithmes, nous avons dû les adapter aux contraintes du sujet, à savoir les opérations sur les listes chaînées (pa, ra, pb, etc.) tout en veillant à respecter la complexité souhaitée (en termes de coût des opérations).
+
+*Description plus détaillée de leur fonctionnement et de l'algorithme adapté :*
+
+- **Simple** — O(n²) : tri par sélection par minimum — repère le minimum de `a`, le place en tête de liste, puis l'ajoute à `b`, et répète l'opération n fois ; puis transfère tous les éléments vers `a` via `pa`.
+
+- **Moyen** — O(n√n) : tri par casiers — attribue un rang à chaque entier, répartit les n éléments dans √n casiers de taille √n, les transfère groupe par groupe dans `b` selon ce rang, puis récupère les maxima successifs dans `a`.
+
+- **Complexe** — O(n log n) : tri par base LSD — attribue un rang à chaque entier, effectue log₂(n) passages bit à bit du moins significatif au plus significatif ; à chaque passage, place les éléments dont le bit est à 0 dans `b`, puis les ramène dans `a`.
+
+- **Adaptatif** — sélectionne dynamiquement la méthode en fonction du **désordre** de la pile (rapport entre les inversions et le nombre total de paires) : **Simple** si le désordre est inférieur à 0,2, **Moyen** s'il est inférieur à 0,5, **Complexe** sinon. Il s'agit de la stratégie par défaut.
