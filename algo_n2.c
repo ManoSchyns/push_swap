@@ -6,7 +6,7 @@
 /*   By: mschyns <mano.schyns@learner.42.tech>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 06:59:58 by mschyns           #+#    #+#             */
-/*   Updated: 2026/04/29 14:32:38 by mschyns          ###   ########.fr       */
+/*   Updated: 2026/04/30 07:06:44 by mschyns          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	n2(t_list **lst_a, t_list **lst_b, int *tab)
 	int	len;
 	int	i;
 
-	if (pre_sort(lst_a))
+	if (pre_sort(lst_a, tab))
 		return ;
 	i = 0;
 	len = get_size(*lst_a);

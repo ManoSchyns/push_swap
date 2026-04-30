@@ -6,7 +6,7 @@
 /*   By: mschyns <mano.schyns@learner.42.tech>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:15:45 by mschyns           #+#    #+#             */
-/*   Updated: 2026/04/29 15:54:28 by mschyns          ###   ########.fr       */
+/*   Updated: 2026/04/30 07:46:30 by mschyns          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,16 @@ void	apply_stategie(t_options options, t_list **stack_a, t_list **stack_b,
 		return (adaptive_sort(stack_a, stack_b, tab));
 }
 
+void	init_variable(t_list **stack_a,
+	t_list **stack_b, t_options *options, int *tab)
+{
+	*stack_a = NULL;
+	*stack_b = NULL;
+	(*options).strategy = STRAT_ADAPTIVE;
+	(*options).bench = 0;
+	full_0(tab, TAB_SIZE);
+}
+
 // MAIN TEMPORAI
 int	main(int argc, char **argv)
 {
@@ -47,12 +57,9 @@ int	main(int argc, char **argv)
 	t_list		*stack_b;
 	t_options	options;
 	int			tab[TAB_SIZE];
+	double		disorder;
 
-	full_0(tab, TAB_SIZE);
-	stack_a = NULL;
-	stack_b = NULL;
-	options.strategy = STRAT_ADAPTIVE;
-	options.bench = 0;
+	init_variable(&stack_a, &stack_b, &options, tab);
 	if (argc < 2)
 		return (0);
 	if (!parse_args(argc, argv, &stack_a, &options))
@@ -61,9 +68,10 @@ int	main(int argc, char **argv)
 		free_stack(&stack_a);
 		return (1);
 	}
+	disorder = compute_disorder(stack_a);
 	apply_stategie(options, &stack_a, &stack_b, tab);
 	if (options.bench == 1)
-		bench(tab, compute_disorder(stack_a), options);
+		bench(tab, disorder, options);
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 	return (0);

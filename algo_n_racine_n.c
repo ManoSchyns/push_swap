@@ -6,7 +6,7 @@
 /*   By: mschyns <mano.schyns@learner.42.tech>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 11:52:52 by mschyns           #+#    #+#             */
-/*   Updated: 2026/04/29 15:14:58 by mschyns          ###   ########.fr       */
+/*   Updated: 2026/04/30 07:52:36 by mschyns          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,16 +125,10 @@ void	bucket_sort(t_list **lst_a, t_list **lst_b, int *tab)
 {
 	int	*index_tab;
 
-	if (pre_sort(lst_a))
+	if (pre_sort(lst_a, tab))
 		return ;
 	index_tab = index_array(*lst_a);
 	assign_index(*lst_a, index_tab);
 	send_by_racine_buckets(lst_a, lst_b, tab);
 	send_back_a(lst_a, lst_b, tab);
 }
-
-/*int main()
-{
-	
-	printf("%d\n", b);
-}*/

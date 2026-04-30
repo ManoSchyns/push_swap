@@ -6,7 +6,7 @@
 /*   By: mschyns <mano.schyns@learner.42.tech>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 08:46:39 by dle-gall          #+#    #+#             */
-/*   Updated: 2026/04/29 15:02:40 by mschyns          ###   ########.fr       */
+/*   Updated: 2026/04/30 07:06:52 by mschyns          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	radix_sort(t_list **stack_a, t_list **stack_b, int *tab)
 	int			bits;
 	t_bucket	data;
 
-	if (pre_sort(stack_a))
+	if (pre_sort(stack_a, tab))
 		return ;
 	size = get_size(*stack_a);
 	data.start = size;

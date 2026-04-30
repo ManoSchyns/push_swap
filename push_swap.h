@@ -104,8 +104,7 @@ void	adaptive_sort(t_list **stack_a, t_list **stack_b, int *tab);
 void	radix_sort(t_list **stack_a, t_list **stack_b, int *tab);
 
 // -- pre-sort --
-int		is_sorted(t_list *lst);
-void	sort_three(t_list **lst_a);
-int		pre_sort(t_list **lst_a);
+void	sort_three(t_list **lst_a, int *tab);
+int		pre_sort(t_list **lst_a, int *tab);
 
 #endif

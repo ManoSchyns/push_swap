@@ -6,7 +6,7 @@
 /*   By: mschyns <mano.schyns@learner.42.tech>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:14:00 by mschyns           #+#    #+#             */
-/*   Updated: 2026/04/29 14:59:13 by mschyns          ###   ########.fr       */
+/*   Updated: 2026/04/30 07:17:04 by mschyns          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,6 @@ double	compute_disorder(t_list	*lst)
 		return (0.0);
 	return (mistakes / total_pairs);
 }
-
-/* TODO : Pour les petits cas ??
-static int	handle_little_case(int len, t_list **lst_a)
-{
-	if (len == 1)
-		return (0);
-	if (len == 2)
-	{
-		if ((*lst_a)->data > (*lst_a)->next->data)
-		{
-			sa(*lst_a, 1);
-			return (1);
-		}
-	}
-	return (0);
-}*/
 
 void	adaptive_sort(t_list **stack_a, t_list **stack_b, int *tab)
 {
